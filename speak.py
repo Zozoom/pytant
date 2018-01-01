@@ -4,7 +4,6 @@ import os, stat
 import time
 from gtts import gTTS
 import pygame
-
 #================================================================================#
 # Variables
 defaultMsg = ''

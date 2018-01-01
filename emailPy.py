@@ -2,7 +2,6 @@
 import smtplib
 import time
 from loggerPy import logger
-
 #================================================================================#
 # Variables
 emailMsg = ''
@@ -19,9 +18,9 @@ def send_email(recipient, subject, body):
     #print getTimeInStr() + defaultMsg
     logger(defaultMsg,'INFO')   
     
-    user = 'xplusoneinfo@gmail.com'
-    pwd = 'Tappancs17'
-    defaultRecipient = 'kiss.zoltan.pti@gmail.com'
+    user = ''
+    pwd = ''
+    defaultRecipient = ''
     
     if(not recipient):
         recipient = defaultRecipient

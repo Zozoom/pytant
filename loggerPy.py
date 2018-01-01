@@ -2,7 +2,6 @@
 import os, errno
 import time
 import logging
-
 #================================================================================#
 # Variables
 defaultMsg = ''

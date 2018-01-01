@@ -4,7 +4,6 @@ import time
 import pyspeedtest
 from emailPy import send_email
 from loggerPy import logger
-
 #================================================================================#
 # Variables
 global sleep, warnTemp
