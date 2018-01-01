@@ -18,13 +18,13 @@ def folderIsExist():
                 raise
 #================================================================================#
 def VoiceNplay(vcText,language):
-    
+
     tts = gTTS(text=vcText, lang=language)
     filename = directory+'temp.mp3'
     tts.save(filename)
+
     pygame.init()
     pygame.mixer.music.load(filename)
-    
     pygame.mixer.music.play(0)
     print(vcText)
 
@@ -35,15 +35,17 @@ def VoiceNplay(vcText,language):
     pygame.mixer.music.stop()
 
     print ('Stopped and remove...')
-    #os.remove(filename) #remove temperory file
+    os.remove(filename)
 
 #================================================================================#
 def main():
+    print ('Temp folder is exist?')
+    folderIsExist()
+
     print ('The Speaking stuf is initalizing...')
     VoiceNplay('How do ya do today ?','en')
     VoiceNplay('What was the weather like ?','en')
     VoiceNplay('Te meg ki vagy ?','hu')
-    VoiceNplay('Az anyad magyarul is tudok...','hu')
     
 #================================================================================#
 if __name__ == "__main__":
