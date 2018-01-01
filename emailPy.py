@@ -1,18 +1,15 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 import smtplib
 import time
 from loggerPy import logger
-
 #================================================================================#
 # Variables
 emailMsg = ''
 defaultMsg = ''
-
 #================================================================================#
 # Get Actual Time in String
 def getTimeInStr():
-    return str(time.strftime('%Y/%m/%d  %H:%M:%S'))
-
+    return str(time.strftime('%Y/%m/%d  %H:%M:%S')) 
 #================================================================================#
 #Log setup
 def send_email(recipient, subject, body):
@@ -21,9 +18,9 @@ def send_email(recipient, subject, body):
     #print getTimeInStr() + defaultMsg
     logger(defaultMsg,'INFO')   
     
-    user = 'xplusoneinfo@gmail.com'
-    pwd = 'Tappancs17'
-    defaultRecipient = 'kiss.zoltan.pti@gmail.com'
+    user = ''
+    pwd = ''
+    defaultRecipient = ''
     
     if(not recipient):
         recipient = defaultRecipient
@@ -61,9 +58,10 @@ def send_email(recipient, subject, body):
         
 #================================================================================#  
 def main():
-    defaultMsg = ' Initializing Email Sending...'
-    logger(defaultMsg,'INFO')
-
+    defaultMsg = ' Initializing Email Sending...'   
+    #print getTimeInStr() + defaultMsg
+    logger(defaultMsg,'INFO') 
+    #send_email('kiss.zoltan.pti@gmail.com','RaspBerry Msg','Hi I am Raspi remember me ?')  
 #================================================================================#
 if __name__ == "__main__":
     main()

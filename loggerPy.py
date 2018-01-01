@@ -1,35 +1,35 @@
-#!/usr/bin/python
+#!/usr/bin/env python
+import os, errno
 import time
 import logging
-from isFileExist import folderIsExist
-
 #================================================================================#
 # Variables
 defaultMsg = ''
 directory = 'logs/'
 logFileName = 'tempLog_'+time.strftime('%Y_%m_%d')+'.log'
 wasInit = False
-
 #================================================================================#
 # Get Actual Time in String
 def getTimeInStr():
-    return str(time.strftime('%Y/%m/%d  %H:%M:%S'))
-
+    return str(time.strftime('%Y/%m/%d  %H:%M:%S')) 
 #================================================================================#
 #Log Init
 def log_init():
-
-    folderIsExist(directory)
+    if not os.path.exists(directory):
+        try:
+            os.makedirs(directory)
+        except OSError as e:
+            if e.errno != errno.EEXIST:
+                raise
     
-    log_filename = directory+logFileName
-    logging.basicConfig(filename=log_filename,level=logging.INFO)
+    LOG_FILENAME = directory+logFileName
+    logging.basicConfig(filename=LOG_FILENAME,level=logging.INFO)
     logging.info('\n')
     logging.info(' ********* Starting at '+time.strftime('%Y/%m/%d  %H:%M:%S')+' *********')
 
     defaultMsg = getTimeInStr()+': Logger was inicialized.'   
     print (defaultMsg)
     logging.info(defaultMsg)
-
     global wasInit
     wasInit = True
     
@@ -38,7 +38,8 @@ def log_init():
 def logger(message,level):
     if(not wasInit):
         log_init()
-
-    defaultMsg = getTimeInStr()+': ['+level+'] > '+message+' <'
+    defaultMsg = getTimeInStr()+': '+level+' > '+message   
     print (defaultMsg)
     logging.info(defaultMsg)
+ 
+ 
