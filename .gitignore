@@ -1,4 +1,8 @@
 
+# Folders
+.temp/
+.logs/
+
 # Created by https://www.gitignore.io/api/pycharm+all,intellij+all
 
 ### Intellij+all ###

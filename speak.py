@@ -1,21 +1,28 @@
-#!/usr/bin/env python
-
-import os, errno
+#!/usr/bin/python
+import os
+import errno
 import time
 from gtts import gTTS
 import pygame
+
 #================================================================================#
 # Variables
 defaultMsg = ''
 directory = 'temp/'
+
 #================================================================================#
 def folderIsExist():
     if not os.path.exists(directory):
         try:
             os.makedirs(directory)
+            print ('Created !')
         except OSError as e:
             if e.errno != errno.EEXIST:
+                print ('Error !'+e.errno)
                 raise
+    else:
+        print ('Already exist !')
+
 #================================================================================#
 def VoiceNplay(vcText,language):
     
@@ -34,15 +41,17 @@ def VoiceNplay(vcText,language):
         print ('Playin...')
     
     print ('Stopped and remove...')
-    #os.remove(filename) #remove temperory file
+    os.remove(filename)
 
 #================================================================================#
 def main():
+    print ('Temp folder is exist ?')
+    folderIsExist()
+
     print ('The Speaking stuf is initalizing...')
     VoiceNplay('How do ya do today ?','en')
     VoiceNplay('What was the weather like ?','en')
     VoiceNplay('Te meg ki vagy ?','hu')
-    VoiceNplay('Az anyad magyarul is tudok...','hu')
     
 #================================================================================#
 if __name__ == "__main__":
