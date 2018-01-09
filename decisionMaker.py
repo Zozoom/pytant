@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import datetime
 from myLog import logg
+from speechRecog import speechRec
 from speechResponse import speechResp
 from random import randrange
 import asistanCore
@@ -22,9 +23,7 @@ myDictonary = {
     "help me":"You can ask from me: my name, the time, ask help",
     "what is your name": "My name is " + asistanCore.aiName,
     "what was your name": "My name was " + asistanCore.aiName,
-    "what's your name": "I'm " + asistanCore.aiName,
-    # "get synonyms": synonymSearch.getSynonyms(),
-    # "get antonyms": synonymSearch.getAntonyms()
+    "what's your name": "I'm " + asistanCore.aiName
 }
 
 #================================================================================#
@@ -32,28 +31,42 @@ myDictonary = {
 welcomeAnswerList = ["You are welcome","No worries","No problem","Not at all","my pleasure","it's nothing"]
 
 #================================================================================#
-def decisions(recognisedText):
+def decisions():
+    global decisionIsDone
+    decisionIsDone = False
+    logg('decisionIsDone' + str(decisionIsDone), 'info')
 
-    logg('Searching decision for: '+recognisedText, 'info')
+    while not decisionIsDone:
 
-    # /////////////////////////////////////////////////////////////////////////////
-    # My Dictonary
-    if recognisedText in myDictonary.keys():
-        for key, value in myDictonary.items():
-            if key == recognisedText:
-                speechResp(value, 'en')
+        recognisedText = speechRec()
 
-    # /////////////////////////////////////////////////////////////////////////////
-    # Thank you
-    elif recognisedText in thankAskList:
-        message = welcomeAnswerList[randrange(0, len(welcomeAnswerList))]
-        speechResp(message, 'en')
+        logg('Searching decision for: ' + recognisedText, 'info')
 
-    # /////////////////////////////////////////////////////////////////////////////
-    # Good bye
-    elif recognisedText in goodbyeAskList:
-        speechResp('Have a nice day and Good Bye!', 'en')
-        global goodBye
-        goodBye = False
-    else:
-        speechResp('Sorry I cannot understand what have you said. Could you repeat it?!', 'en')
+        # /////////////////////////////////////////////////////////////////////////////
+        # My Dictonary
+        if recognisedText in myDictonary.keys():
+            for key, value in myDictonary.items():
+                if key == recognisedText:
+                    speechResp(value, 'en')
+
+        # /////////////////////////////////////////////////////////////////////////////
+        # Thank you
+        elif recognisedText in thankAskList:
+            message = welcomeAnswerList[randrange(0, len(welcomeAnswerList))]
+            speechResp(message, 'en')
+
+        # /////////////////////////////////////////////////////////////////////////////
+        # Good bye
+        elif recognisedText in goodbyeAskList:
+            speechResp('Have a nice day and Good Bye!', 'en')
+            global goodBye
+            goodBye = False
+            break
+        else:
+            speechResp('Sorry I cannot understand what have you said. Could you repeat it?!', 'en')
+            decisionIsDone = False
+
+        decisionIsDone = True
+
+    logg('decisionIsDone' + str(decisionIsDone), 'info')
+    return decisionIsDone

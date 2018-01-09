@@ -5,12 +5,12 @@ from speechRecog import speechRec
 from speechResponse import speechResp
 
 #================================================================================#
-def getSynonyms():
+def getSynonyms(word):
     synonyms = []
 
-    speechResp("What synonyms would you like to know?", 'en')
+    #speechResp("What synonyms would you like to know?", 'en')
 
-    word = speechRec()
+    #word = speechRec()
 
     logg('Getting synonyms for: ' + word, 'info')
 
@@ -20,17 +20,17 @@ def getSynonyms():
 
     result = str(', '.join(e for e in set(synonyms)))
 
-    speechResp('The synonyms are: '+result, 'en')
+    #speechResp('The synonyms are: '+result, 'en')
 
-    return str(', '.join(e for e in set(synonyms)))
+    return result
 
 # ================================================================================#
-def getAntonyms():
+def getAntonyms(word):
     antonyms = []
 
-    speechResp("What antonyms would you like to know?", 'en')
+    #speechResp("What antonyms would you like to know?", 'en')
 
-    word = speechRec()
+    #word = speechRec()
 
     logg('Getting antonyms for: ' + word, 'info')
 
@@ -41,14 +41,18 @@ def getAntonyms():
 
     result = str(', '.join(e for e in set(antonyms)))
 
-    speechResp('The antonyms are: ' + result, 'en')
+    #speechResp('The antonyms are: ' + result, 'en')
 
-# # ================================================================================#
-# def main():
-#
-#     print '\nSynonyms:'
-#     print getSynonyms("bad")
-#
-# # ================================================================================#
-# if __name__ == "__main__":
-#     main()
+    return result
+
+# ================================================================================#
+def main():
+
+    while True:
+        inputText = raw_input("What synonyms would you like to know? \nAnsw: ")
+        print '\nSynonyms:'
+        print getSynonyms(inputText)
+
+# ================================================================================#
+if __name__ == "__main__":
+    main()
