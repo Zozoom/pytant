@@ -1,9 +1,12 @@
+# -*- coding: utf-8 -*-
 #!/usr/bin/env python3
 import time
 import errno, os
 import pygame
 from gtts import gTTS
+from time import sleep
 from myLog import logg
+from mutagen.mp3 import MP3
 
 #================================================================================#
 # Variables
@@ -46,12 +49,10 @@ def speechResp(vcText,language):
     pygame.mixer.music.play(0)
     logg('Speeching: < '+vcText+' >', 'info')
 
-    while pygame.mixer.music.get_busy() == True:
-        time.sleep(1)
-        #print ('Playin...')
+    audio = MP3(speakTempFile)
+    print 'Audio leng: '+str(audio.info.length)
 
-    pygame.mixer.music.stop()
-    #logg('Speeching: > Stopped <', 'info')
+    sleep(audio.info.length)
 
     #print ('Remove...')
     #os.remove(speakTempFile)

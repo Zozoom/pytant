@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 #!/usr/bin/env python3
 import datetime
 from myLog import logg
@@ -5,7 +6,6 @@ from speechRecog import speechRec
 from speechResponse import speechResp
 from random import randrange
 import asistanCore
-import synonymSearch
 #================================================================================#
 # Variables
 goodBye = True

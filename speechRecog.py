@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 #!/usr/bin/env python3
 import speech_recognition as sr
 from speechResponse import speechResp

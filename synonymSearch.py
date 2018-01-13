@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 #!/usr/bin/env python3
 from nltk.corpus import wordnet
 from myLog import logg

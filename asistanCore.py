@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 #!/usr/bin/env python3
 from myLog import logg
 from speechResponse import speechResp
@@ -10,15 +11,18 @@ import configparser
 # Variables
 aiName = ''
 # Lists
-qaBackList = ["I'm listening.","What can I do for you?","Can I help you?","Did you call me?","Did you say my name?","Did you say something?"]
+qaBackList = ''
 
 # ================================================================================#
-def main():
-
+def setConfigs():
+    global aiName, qaBackList
     config = configparser.ConfigParser()
     config.read('all.config')
     qaBackList = config['Answers']['caller'].split(",")
     aiName = config['BASIC']['aiName']
+
+# ================================================================================#
+def main():
 
     # Starting section
     logg('Start the Asistant python...', 'info')
@@ -42,4 +46,5 @@ def main():
 
 # ================================================================================#
 if __name__ == "__main__":
+    setConfigs()
     main()
